@@ -4,11 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="main.css" />
     <title>Document</title>
 </head>
 <body>
-    <div id="app">
-        {{ fullName() }}
+    <div id="app" v-cloak>
+        
+        <p>{{ fullName() }}</p>
+        <p><a :href="URL" target="_blank"> Google.</a></p>
+        <p v-html="raw_url"></p>
+        <hr/>
+        <label for="" >First Name</label>
+        <input type="text" v-model="firstName">
+        <label for="" >Last Name</label>
+        <input type="text" v-model="lastName">
+        <label for="" >URL</label>
+        <input type="text" v-model="URL">
     </div>
      <!-- <div id="second">
         {{ firsName}}  {{ lastName  }}

@@ -2,14 +2,16 @@ const vu = Vue.createApp( {
     data ()
     {
         return {
-            firsName: "omar",
-            lastName: "Alsoudi"
+            firstName: "omar",
+            lastName: "Alsoudi",
+            URL: "https://hello.com",
+            raw_url:"<a href='https://hello.com' target='_blank'> Google.</a>"
         }
     },
     methods: {
         fullName ()
         {
-            return this.firsName +' '+ this.lastName.toUpperCase() ;
+            return this.firstName +' '+ this.lastName.toUpperCase() ;
         }
     }
 } ).mount( "#app" );
