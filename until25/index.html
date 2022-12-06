@@ -5,22 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/css" href="main.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="main.css" /> -->
     <title>Document</title>
 </head>
 <body>
     <div id="app" v-cloak>
         
-        <p>{{ fullName() }}</p>
+        <p>{{ fullName}}</p><!--computed method--> 
         <p><a :href="URL" target="_blank"> Google.</a></p>
         <p v-html="raw_url"></p>
+        <p>{{ typeof Age }}</p>
         <hr/>
         <label for="" >First Name</label>
         <input type="text" v-model="firstName">
+        <label for="" > when ever you ckick enter midle Name</label>
+        <input type="text" @keyup.enter="updateMidelName">
         <label for="" >Last Name</label>
-        <input type="text" v-model="lastName">
+        <input type="text" value="lastName" @input="updatelastName('lastName is been triggered',$event)">
         <label for="" >URL</label>
         <input type="text" v-model="URL">
+        <label for="" > Age: {{ Age }}</label>
+        <input type="number" v-model.number="Age">
+        <button type="button" @click="increment">Increment</button><!--//or age++ -->
+        <button type="button" @click="decrement">decrement</button><!--//or age-- -->
+
     </div>
      <!-- <div id="second">
         {{ firsName}}  {{ lastName  }}
