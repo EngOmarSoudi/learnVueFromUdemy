@@ -5,7 +5,14 @@ const vu = Vue.createApp( {
             p: "hi",
             isPurple: false,
             selectColour: "",
-            size:150,
+            size: 150,
+            model: 1,
+            birds: [ 'Pigeons', 'Eagles', 'Doves', 'Parrots', ],
+            ppl: [
+                {name: "omar" ,age:25},
+                {name: "abood" ,age:20},
+                {name: "ali" ,age:13}
+            ],
         }
     },
     computed: {

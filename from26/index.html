@@ -25,6 +25,41 @@
       v-if="size <= 400"> <!-- if size biger than 400px will disappear -->
         {{ p }}
       </div>
+      <!-- //if condition  -->if condition
+      <div v-if="model == 1">
+        1
+      </div>
+      <div v-else-if="model == 2">
+        2
+      </div>
+      <div v-else="model == 3">
+        3
+      </div>
+      <select v-model="model">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+      <!-- //for loopeing  -->
+      <div>for loopeing
+        <ul>
+            <li v-for="(bird,index) in birds" :class="bird">
+                {{ bird }} - {{ index }}
+            </li>
+        </ul>
+        <hr/>
+         <ul>
+            <li v-for="(person,index) in ppl" :class="person.name" :key="person.name">
+                <div>
+                    {{ person.name }}
+                    {{ person.index }}
+                </div>
+                <div v-for="(key , value ,index) in person">
+                    value:  {{ value }} key:  {{ key }}  index:  {{ index }}<br/>
+                </div> 
+            </li>
+        </ul>
+      </div>
     </div>
      <!-- <div id="second">
         {{ firsName}}  {{ lastName  }}
