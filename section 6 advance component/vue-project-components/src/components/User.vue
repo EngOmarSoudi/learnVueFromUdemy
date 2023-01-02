@@ -4,6 +4,7 @@
   <!-- So ^ -->
   <!-- <button  type="button" @click="$emit('age-up')">Increasing The Age</button>/// this is shortcut -->
   <button  type="button" @click="onClickAge">Increasing The Age</button>
+  <button  type="button" @click="upDateAgeFn(2)">Increasing The Age Function BC</button>
   <p>
   This User is {{ age }} Years Old
 </p>
@@ -24,6 +25,10 @@ export default {
       validator(value){
         return value < 100;
       }
+    },
+    upDateAgeFn: {
+      type: Function,
+      default: n=>b
     }
   },
   emits: ['age-up'],
@@ -56,3 +61,5 @@ p:hover{
         color:darken($color: #ff12ff, $amount: 15%)
     }
 </style>
+
+
