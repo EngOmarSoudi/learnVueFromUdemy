@@ -1,47 +1,75 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <div ><button @click="show = !show">Toggle</button>
+    <!-- <h1>Animations</h1>
+    
+    <transition name="fade" mode="out-in">
+      <p v-if="show" key="main">hii</p>
+      <p v-else key="secondary">w</p>
+    </transition> -->
+    <transition name="zoom" type="animation" appear>
+      <h2 v-if="show">
+        Hello
+      </h2>
+    </transition>
+  </div>
+  
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+
+<script>
+export default {
+  name: 'App',
+  data() {
+    return {
+      show: false
+    }
+  },
 }
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+</script>
+<style>
+h2
+{
+  width:400px ;
+  padding: 20px;
+  margin: 20px;
 }
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.fade-enter-from{
+  opacity: 0;
 }
+.fade-enter-active {
+  transition: all 0.25s linear ;
+  
+}
+ .fade-leave-active{
+  transition: all 0.25s linear ;
+  opacity: 0;
+ }
+
+  .zoom-enter-active{
+    animation: zoom-in 1s linear forwards;
+    transition: all 1s linear ;
+  }
+  .zoom-leave-active{
+    animation: zoom-out 1s linear forwards;
+    transition: all 1s linear ;
+  }
+  .zoom-enter-from,.zoom-leave-to{
+    opacity: 0;
+  }
+  @keyframes zoom-in{
+    0%{
+      transform: scale(0);
+    }
+    100%{
+      transform: scale(1);
+    }
+  }
+  @keyframes zoom-out{
+    100%{
+      transform: scale(0);
+    }
+    0%{
+      transform: scale(1);
+    }
+  }
 </style>
