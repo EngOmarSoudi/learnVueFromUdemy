@@ -6,11 +6,26 @@
       <p v-if="show" key="main">hii</p>
       <p v-else key="secondary">w</p>
     </transition> -->
-    <transition name="zoom" type="animation" appear>
+    <!-- <transition name="zoom" type="animation" appear>
       <h2 v-if="show">
         Hello
       </h2>
-    </transition>
+    </transition> -->
+    <transition
+    @before-enter="beforeEnter"
+    @enter="enter"
+    @after-enter="afterEnter"
+    @before-leave="beforeLeave"
+    @leave="leave"
+    @after-leave="afterLeave"
+    @enter-cancelled="enterCancelled"
+    @leave-cancelled="leaveCancelled"
+    :css="true"
+    name="fade"
+    >
+    <h3 v-if="show">hey</h3> 
+   
+    </transition> <h2>5</h2>
   </div>
   
 </template>
@@ -21,7 +36,50 @@ export default {
   name: 'App',
   data() {
     return {
-      show: false
+      show: false,
+      numbers: [1, 2, 3, 4, 5]
+    }
+  },
+  methods:{
+    beforeEnter(el){
+      console.log('beforeEnter',el);
+    },
+    enter ( el )
+    {
+      // ^, done
+      console.log( 'enter', el );
+      // const animation= el.animate(
+      //  [ {transform: 'scale3d(0,0,0)'},{}]
+      //   , { duration: 1000 } );
+      // animation.onfinish =()=>{
+      //   done();
+      // }
+    },
+    afterEnter(el){
+      console.log('afterEnter',el);
+    },
+    beforeLeave(el){
+      console.log('beforeLeave',el);
+    },
+    leave ( el )
+    {
+      // , done
+      console.log('leave',el);
+      // const animation= el.animate(
+      //  [ {},{transform: 'scale3d(0,0,0)'}]
+      //   , { duration: 1000 } );
+      // animation.onfinish =()=>{
+      //   done();
+      // }
+    },
+    afterLeave(el){
+      console.log('afterLeave',el);
+    },
+    enterCancelled(el){
+      console.log('enterCancelled',el);
+    },
+    leaveCancelled(el){
+      console.log('leaveCancelled',el);
     }
   },
 }
