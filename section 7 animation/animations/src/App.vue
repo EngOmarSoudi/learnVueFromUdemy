@@ -1,5 +1,6 @@
 <template>
-  <div ><button @click="show = !show">Toggle</button>
+  <div >
+  <!-- <button @click="show = !show">Toggle</button> -->
     <!-- <h1>Animations</h1>
     
     <transition name="fade" mode="out-in">
@@ -11,7 +12,7 @@
         Hello
       </h2>
     </transition> -->
-    <transition
+    <!-- <transition
     @before-enter="beforeEnter"
     @enter="enter"
     @after-enter="afterEnter"
@@ -25,7 +26,19 @@
     >
     <h3 v-if="show">hey</h3> 
    
-    </transition> <h2>5</h2>
+    </transition> -->
+    <button @click="addItem">Add</button>
+    <ul >
+      <transition-group name="fade"
+      enter-active-class="animate__animated animate__flipInX"
+      leave-active-class="animate__animated animate__flipOutX"
+      >
+      <!-- leave-to-class=""leave-from-class=""enter-from-class=""enter-to-class="" -->
+        <li v-for="(number , index) in numbers" :key="number" @click="removeItem(index)">
+          {{ number  }}
+        </li>
+      </transition-group>
+    </ul>
   </div>
   
 </template>
@@ -37,10 +50,19 @@ export default {
   data() {
     return {
       show: false,
-      numbers: [1, 2, 3, 4, 5]
+      numbers: [1, 2, 3, 4, 5],
     }
   },
-  methods:{
+  methods: {
+    addItem ()
+    {
+      const num = Math.floor( Math.random() * 100+1 );
+      const index = Math.floor( Math.random() * this.numbers.length );
+      this.numbers.splice(index, 0, num);
+    },
+    removeItem(index) {
+      this.numbers.splice(index, 1);
+    },
     beforeEnter(el){
       console.log('beforeEnter',el);
     },
@@ -85,6 +107,16 @@ export default {
 }
 </script>
 <style>
+.animate__animated {
+  animation-duration: 1s;
+}
+.animate__flipOutX {
+  position: absolute;
+}
+li{
+  font-size: 22px;
+  cursor: pointer;
+}
 h2
 {
   width:400px ;
@@ -101,8 +133,11 @@ h2
  .fade-leave-active{
   transition: all 0.25s linear ;
   opacity: 0;
+  position: absolute;
  }
-
+.fade-move{
+  transition: all 1s linear ;
+}
   .zoom-enter-active{
     animation: zoom-in 1s linear forwards;
     transition: all 1s linear ;
