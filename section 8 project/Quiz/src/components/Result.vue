@@ -1,15 +1,30 @@
 <template>
   <div class="result">
-        <div class="title">You got sample result 1!</div>
+        <div class="title">{{ results[resultIndex].title }}</div>
         <div class="desc">
-            Enter a short description here about the result.
+            {{ results[resultIndex].desc }}
         </div>
     </div>
 </template>
 
 <script> 
 export default {
-
+    props: [ 'results', 'totalCorrect' ],
+    computed: {
+        // result() {
+        //     return this.results.find(result => result.min <= this.totalCorrect && result.max >= this.totalCorrect);
+        // }
+        resultIndex ()
+        {
+            let index = 0;
+            this.results.forEach((result, i) => {
+                if (result.min <= this.totalCorrect && result.max >= this.totalCorrect) {
+                    index = i;
+                }
+            } );
+            return index;
+        }
+    }
 }
 </script>
 
